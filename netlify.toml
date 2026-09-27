@@ -1,0 +1,18 @@
+[build]
+  # Site 100 % statique : aucune commande a lancer.
+  # Netlify sert simplement les fichiers du dossier publie.
+  publish = "."
+  command = ""
+
+# Dossier a ne pas publier si on re-depose des fichiers de travail ici.
+[build.ignoredFiles]
+  "**/_*"
+  "**/*.ps1"
+  "**/.vscode/**"
+  "**/node_modules/**"
+
+# Page affichee pour toute URL inconnue.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

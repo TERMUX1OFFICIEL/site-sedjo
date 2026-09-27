@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Empeche l'indexation des pages techniques sans interet pour le SEO.
+Disallow: /404.html

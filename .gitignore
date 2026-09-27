@@ -1,0 +1,23 @@
+# Fichiers de travail — ne jamais publier
+_qa/
+_sauvegarde/
+_private/
+
+# Scripts d_OUTILISATION (ils servent sur TON ordi, pas sur le site)
+*.ps1
+*.sh
+
+# Dependances (le site n en a aucune, au cas ou)
+node_modules/
+
+# Fichiers systeme et config d editeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+desktop.ini
+
+# Secrets eventuels (au cas ou tu ajoutes un jour un .env)
+.env
+.env.local
+*.key
