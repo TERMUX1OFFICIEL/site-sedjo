@@ -111,12 +111,6 @@ function contact() {
   const phones = phoneList()
     .map((p) => `<a href="${p.href}">${escapeHtml(p.label)}</a>`)
     .join("");
-  const socials = (store.socials || [])
-    .map(
-      (s) =>
-        `<a href="${escapeHtml(s.href)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>`
-    )
-    .join("");
   return `
     <section class="section" id="contact">
       <div class="wrap">
@@ -140,10 +134,6 @@ function contact() {
               <div><strong>Zone</strong><span>${escapeHtml(store.address)}${
     store.hours ? ` · ${escapeHtml(store.hours)}` : ""
   }</span></div>
-            </div>
-            <div class="contact-item">
-              <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3H8a5 5 0 0 0-5 5v8a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V8a5 5 0 0 0-5-5Zm3.5 12.5a1.5 1.5 0 0 1-1.5 1.5H8a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 8 6.5h10A1.5 1.5 0 0 1 19.5 8Z"/></svg></div>
-              <div><strong>Réseaux</strong>${socials}</div>
             </div>
           </div>
 

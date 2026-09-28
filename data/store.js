@@ -7,13 +7,6 @@ export const store = {
   whatsapp: "2250769183696",
   email: "",
   address: "Côte d’Ivoire",
-    instagram: "https://instagram.com/sedjo.officiel",
-  socials: [
-    {
-      label: "Instagram",
-      href: "https://instagram.com/sedjo.officiel",
-    },
-  ],
 
   promises: [
     {

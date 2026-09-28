@@ -134,14 +134,6 @@ export function renderHeader() {
 export function renderFooter() {
   const host = document.getElementById("footer");
   if (!host) return;
-  const socials = (store.socials || [])
-    .map(
-      (s) =>
-        `<a href="${escapeHtml(s.href)}" target="_blank" rel="noopener">${escapeHtml(
-          s.label
-        )}</a>`
-    )
-    .join(" · ");
   const phoneLinks = phoneList()
     .map(
       (p) => `<a href="${p.href}">${escapeHtml(p.label)}</a>`
@@ -172,7 +164,6 @@ export function renderFooter() {
       <p>© ${new Date().getFullYear()} ${escapeHtml(store.name)} — ${escapeHtml(
     store.country
   )}.</p>
-      <p>${socials}</p>
     </div>
   `;
 }
