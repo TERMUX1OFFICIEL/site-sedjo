@@ -143,12 +143,13 @@ export const products = [
   },
   {
     id: "jus",
-    name: "Jus de fruits",
+    name: "Jus d'anacarde",
     category: "boissons",
     image: "assets/products/jus.jpeg",
+    price: "1 000 F CFA",
     summary: "Boisson naturelle et rafra\u00eechissante, riche en vitamines et min\u00e9raux.",
     description:
-      "Jus de fruits naturel et rafra\u00eechissante, pr\u00e9par\u00e9 \u00e0 partir de fruits (\u00e0 base de pomme d'anacarde, pomme et ananas). 100 % naturel, sans conservateur ni additif. \u00c0 consommer frais, en boisson ou \u00e0 table, pour accompagner le quotidien.",
+      "Jus d'anacarde naturel et rafra\u00eechissant, pr\u00e9par\u00e9 \u00e0 partir de fruits (\u00e0 base de pomme d'anacarde, pomme et ananas). 100 % naturel, sans conservateur ni additif. \u00c0 consommer frais, en boisson ou \u00e0 table, pour accompagner le quotidien.",
     highlights: [
       "100 % naturel, sans conservateur ni additif",
       "Renforce l'immunit\u00e9 : riche en vitamine C, il aide \u00e0 lutter contre les infections et renforce les d\u00e9fenses naturelles",

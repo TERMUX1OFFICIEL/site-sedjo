@@ -50,7 +50,7 @@ function renderDetail(main, product) {
           <div>
             <p class="eyebrow">${escapeHtml(categoryName(product.category))}</p>
             <h1 class="pd-title">${escapeHtml(product.name)}</h1>
-            <p class="pd-price">Prix sur demande</p>
+            <p class="pd-price">${escapeHtml(product.price || "Prix sur demande")}</p>
             <p>${escapeHtml(product.description)}</p>
 
             ${

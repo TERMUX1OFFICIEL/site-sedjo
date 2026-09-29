@@ -268,7 +268,7 @@ export function productCard(product) {
       <div class="card-body">
         <h3><a href="produit.html?id=${encodeURIComponent(product.id)}">${escapeHtml(product.name)}</a></h3>
         <p>${escapeHtml(product.summary)}</p>
-        <p class="price-note">Prix sur demande</p>
+        <p class="price-note">${escapeHtml(product.price || "Prix sur demande")}</p>
         <a class="btn btn-outline btn-block" href="produit.html?id=${encodeURIComponent(product.id)}">Voir le produit</a>
       </div>
     </article>
