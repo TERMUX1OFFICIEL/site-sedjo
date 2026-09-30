@@ -127,19 +127,44 @@ export const products = [
     formats: ["Bouteille 10 cl", "Bouteille 25 cl", "Bouteille 50 cl"],
   },
   {
-    id: "liqueurs",
-    name: "Liqueurs artisanales",
+    id: "liqueur-pomme-cajou-colas",
+    name: "Liqueur de pomme de cajou fortifi\u00e9e au cola",
     category: "boissons",
-    image: "assets/products/liqueurs.jpg",
-    summary: "Liqueurs parfum\u00e9es, \u00e9quilibrant douceur et caract\u00e8re.",
+    image: "assets/products/liqueur-pomme-cajou-colas.jpeg",
+    summary:
+      "Liqueur artisanale de pomme de cajou fortifi\u00e9e au cola, au go\u00fbt doux et \u00e9quilibr\u00e9.",
     description:
-      "Des liqueurs \u00e9labor\u00e9es \u00e0 partir de fruits et d'\u00e9pices, matur\u00e9es pour d\u00e9velopper un parfum riche et un go\u00fbt \u00e9quilibr\u00e9. Chaque vari\u00e9t\u00e9 est embouteill\u00e9e, pr\u00eate \u00e0 la d\u00e9gustation ou au service. Fabrication artisanale, en petites s\u00e9ries, pour un rendu gras et pr\u00e9cis.",
+      "Une liqueur artisanale unique, \u00e9labor\u00e9e \u00e0 partir de pomme de cajou et fortifi\u00e9e au cola. Son go\u00fbt, doux et \u00e9quilibr\u00e9, associe la douceur de la pomme de cajou \u00e0 la chaleur du cola, pour un ar\u00f4me unique et reconnaissance. \u00c9labor\u00e9e en petites s\u00e9ries, sans colorant ni conservateur artificiels, elle se d\u00e9guste nature ou en digestif. Origine : C\u00f4te d'Ivoire.",
     highlights: [
-      "\u00c9laboration fruit\u00e9e",
-      "Maturage naturel",
-      "Service d\u00e9gusteur",
+      "Riche en antioxydants naturels",
+      "Favorise la digestion",
+      "Apporte de l'\u00e9nergie et de la vitalit\u00e9",
+      "Contribue au bien-\u00eatre g\u00e9n\u00e9ral",
+      "Source de min\u00e9raux et de vitamines",
+      "\u00c9quilibre et vitalit\u00e9 au quotidien",
+      "Artisanal, sans conservateur ni colorant artificiel",
+      "Fabrication en petites s\u00e9ries",
     ],
-    formats: ["Bouteille 25 cl", "Bouteille 70 cl"],
+    formats: ["Bouteille 75 cl"],
+  },
+  {
+    id: "liqueur-cajou-cacao",
+    name: "Liqueur de cajou fortifi\u00e9e au cacao",
+    category: "boissons",
+    image: "assets/products/liqueur-cajou-cacao.jpeg",
+    summary:
+      "Liqueur de cajou fortifi\u00e9e au cacao, qui associe les saveurs de la pomme d'anacarde et du cacao.",
+    description:
+      "Une liqueur de cajou \u00e9labor\u00e9e \u00e0 partir de noix de cajou et de cacao, dont la recette associe l'acidit\u00e9 fruit\u00e9e de la pomme d'anacarde \u00e0 la richesse du cacao. Fortifi\u00e9e et embouteill\u00e9e \u00e0 la demande, elle se sert fra\u00eeche ou en digestif, pour une d\u00e9gustation ml\u00f9re et g\u00e9n\u00e9reuse. Fabrication artisanale en petites s\u00e9ries.",
+    highlights: [
+      "Pomme d'anacarde et cacao dans un m\u00eame \u00e9lange",
+      "Facilite la digestion",
+      "Permet une bonne circulation sanguine",
+      "Stimule naturellement le d\u00e9sir sexuel",
+      "Liqueur fortifi\u00e9e, \u00e9labor\u00e9e \u00e0 la demande",
+      "Fabrication artisanale en petites s\u00e9ries",
+    ],
+    formats: ["Flacon 20 cl", "Flacon 75 cl"],
   },
   {
     id: "jus",
