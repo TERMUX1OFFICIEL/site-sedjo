@@ -12,6 +12,17 @@ import {
 } from "./ui.js";
 
 function hero() {
+  // Visuels du hero : pris dans le catalogue, donc toujours a jour.
+  // Les photos produits sont detourees (fond blanc) : elles flottent et
+  // tournent sans cadre. Decoratives : alt="" + aria-hidden.
+  const floatImg = (id, cls) => {
+    const p = products.find((x) => x.id === id) || products[0];
+    return p
+      ? `<span class="float-img float-img--${cls}" aria-hidden="true"><img src="${escapeHtml(
+          p.image
+        )}" alt="" width="320" height="320" /></span>`
+      : "";
+  };
   return `
     <section class="hero">
       <div class="wrap hero-inner">
@@ -25,10 +36,32 @@ function hero() {
           </div>
         </div>
         <div class="hero-media">
-          <img src="assets/img/hero.jpg" alt="Produits naturels Sèdjô" width="640" height="480" />
+          ${floatImg("amandes-cajou", "a")}
+          ${floatImg("pate-cajou", "main")}
+          ${floatImg("liqueur-cremeuse", "b")}
         </div>
       </div>
     </section>
+  `;
+}
+
+/** L'affiche complete (familles de produits) garde sa lisibilite ici. */
+function posterStrip() {
+  const cats = categories.filter((c) => c.id !== "all").length;
+  return `
+    <figure class="poster-strip">
+      <div class="wrap">
+        <div class="poster-strip-wrap" style="max-width:860px;margin:0 auto">
+          <img src="assets/img/hero.jpg" alt="Affiche Sèdjô : nos familles de produits" width="1200" height="900" loading="lazy" />
+          <div class="poster-stats" aria-hidden="true">
+            <div class="poster-stat poster-stat--1"><strong>${products.length}</strong><span>produits naturels</span></div>
+            <div class="poster-stat poster-stat--2"><strong>${cats}</strong><span>familles de produits</span></div>
+            <div class="poster-stat poster-stat--3"><strong>100 %</strong><span>fabriqué localement</span></div>
+          </div>
+        </div>
+        <figcaption>Nos familles de produits : alimentation, boissons, gourmandises et hygiène.</figcaption>
+      </div>
+    </figure>
   `;
 }
 
@@ -58,14 +91,16 @@ function perks() {
 }
 
 function featured() {
-  const list = products.slice(0, 3);
+  // Nombre affiche : les 3 premiers produits, mais jamais plus que le total
+  // (sinon une boutique de 2 references annoncait " 3 produits phares ").
+  const list = products.slice(0, Math.min(3, products.length));
   return `
     <section class="section" id="produits">
       <div class="wrap">
         <div class="section-head reveal">
           <span class="eyebrow">Sélection</span>
           <h2>Nos produits phares</h2>
-          <p>Un aperçu de la boutique, le catalogue complet est à un clic.</p>
+          <p>Un aperçu de la boutique (${list.length} sur ${products.length}) : le catalogue complet est à un clic.</p>
         </div>
         <div class="grid-products">${list.map(productCard).join("")}</div>
         <p style="margin-top:30px"><a class="btn btn-primary" href="catalogue.html">Voir tout le catalogue</a></p>
@@ -168,7 +203,7 @@ function renderHome() {
   const main = document.getElementById("main");
   // 404.html fournit son propre contenu : on ne l'ecrase pas.
   if (!main || main.children.length > 0) return;
-  main.innerHTML = hero() + perks() + featured() + categoriesSection() + contact();
+  main.innerHTML = hero() + posterStrip() + perks() + featured() + categoriesSection() + contact();
 
   const form = document.getElementById("orderForm");
   const status = document.getElementById("orderStatus");

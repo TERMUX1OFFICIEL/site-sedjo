@@ -42,9 +42,11 @@ function renderDetail(main, product) {
 
         <div class="product-detail">
           <div class="gallery">
+            <span class="gallery-glow" aria-hidden="true"></span>
             <div class="gallery-main">
               <img id="mainImage" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" width="600" height="600" />
             </div>
+            <p class="gallery-caption">${escapeHtml(categoryName(product.category))}</p>
           </div>
 
           <div>
@@ -70,6 +72,17 @@ function renderDetail(main, product) {
             <ul class="benefit-list">
               ${(product.usages || [])
                 .map((u) => `<li>${escapeHtml(u)}</li>`)
+                .join("")}
+            </ul>`
+                : ""
+            }
+
+            ${
+              (product.formats || []).length
+                ? `<h2 class="pd-subtitle">Formats disponibles</h2>
+            <ul class="benefit-list">
+              ${(product.formats || [])
+                .map((f) => `<li>${escapeHtml(f)}</li>`)
                 .join("")}
             </ul>`
                 : ""
@@ -130,6 +143,9 @@ function render() {
   const id = new URLSearchParams(window.location.search).get("id");
   const product = products.find((p) => p.id === id);
   if (!product) {
+    // Une 200 sur un lien mort ne doit pas rester indexable.
+    const robots = document.querySelector('meta[name="robots"]');
+    if (robots) robots.setAttribute("content", "noindex");
     notFound(main);
     return;
   }

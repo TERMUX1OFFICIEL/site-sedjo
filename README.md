@@ -17,6 +17,12 @@ Site statique (HTML / CSS / JavaScript) de SÈDJÔ : produits naturels du terroi
 | `assets/js/ui.js` | En-tête, pied de page, bouton WhatsApp |
 | `data/products.js` | Catalogue des produits |
 | `data/store.js` | Coordonnées et réglages du site |
+| `sitemap.xml` | Plan du site (régénérer après ajout/suppression de produit) |
+| `_headers` / `netlify.toml` | En-têtes de sécurité et redirection 404 |
+| `_qa/` | Outils de contrôle locaux (non publiés, ignorés par git) |
+
+> Le fichier `sitemap.xml` est généré : après toute modification du catalogue, lancer
+> `node _qa/gen-sitemap.mjs`.
 
 ## Technologies
 

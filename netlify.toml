@@ -4,12 +4,13 @@
   publish = "."
   command = ""
 
-# Dossier a ne pas publier si on re-depose des fichiers de travail ici.
-[build.ignoredFiles]
-  "**/_*"
-  "**/*.ps1"
-  "**/.vscode/**"
-  "**/node_modules/**"
+# Dossiers de travail : jamais publies (et absents du depot via .gitignore).
+[[build.ignore]]
+  path = "_qa"
+[[build.ignore]]
+  path = "_sauvegarde"
+[[build.ignore]]
+  path = "_private"
 
 # Page affichee pour toute URL inconnue.
 [[redirects]]

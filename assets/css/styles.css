@@ -51,6 +51,10 @@ ul { margin: 0 0 1rem; padding-left: 1.1rem; }
   color: #fff; padding: 10px 16px; z-index: 200;
 }
 .skip-link:focus { left: 8px; top: 8px; }
+/* #main n'a pas de cible de focus naturelle : sans ceci, « Aller au contenu »
+   deplace le defilement mais laisse le focus en haut du document. */
+main:focus { outline: none; }
+main:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
 
 /* ---------- Boutons ---------- */
 .btn {
@@ -128,11 +132,128 @@ ul { margin: 0 0 1rem; padding-left: 1.1rem; }
   font-size: .82rem; margin-bottom: 1.2rem;
 }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.4rem; }
-.hero-media { position: relative; }
-.hero-media img {
-  display: block; width: 100%; height: auto; border-radius: var(--radius);
-  box-shadow: var(--shadow); background: #fff; object-fit: contain;
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.4rem; }
+
+/* ---------- Visuel produit flottant ----------
+   Les photos produits sont detourees (fond blanc) : on les pose nues sur le
+   degrade vert, sans cadre blanc, avec une ombre douce. Elles flottent ET
+   tournent lentement (composants CSS transform/rotate uniquement). */
+.hero-media {
+  position: relative; display: grid; place-items: center;
+  min-height: clamp(260px, 32vw, 380px);
+  /* Marge interieure = place pour les satellites sans sortir du cadre. */
+  padding: 6px 58px;
 }
+.hero-media::before {
+  /* halo lumineux derriere le produit */
+  content: ""; position: absolute; width: 74%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.20), rgba(255,255,255,0) 68%);
+  z-index: 0;
+}
+.float-img {
+  position: absolute; z-index: 1; overflow: hidden;
+  background: transparent; border: 0; pointer-events: none;
+  animation: floatSpin 9s ease-in-out infinite;
+  will-change: transform;
+}
+.float-img img {
+  display: block; width: 100%; height: 100%; object-fit: contain;
+  border-radius: 0; box-shadow: none; background: transparent;
+  filter: drop-shadow(0 18px 22px rgba(3, 22, 12, .38));
+  /* Les 3 visuels sont des PHOTOS rectangulaires (pas des detoures) :
+     un masque radial efface les bords blancs et les fait fondre dans
+     le degrade vert, au lieu de coller un rectangle sur le fond. */
+  -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 96%);
+  mask-image: radial-gradient(closest-side, #000 62%, transparent 96%);
+}
+/* Le produit principal : masque plus large (on veut voir le visuel entier). */
+.float-img--main img {
+  -webkit-mask-image: radial-gradient(closest-side, #000 76%, transparent 99%);
+  mask-image: radial-gradient(closest-side, #000 76%, transparent 99%);
+}
+/* Le produit principal : grand, centre, en avant. */
+.float-img--main { width: clamp(150px, 52%, 300px); aspect-ratio: 1; }
+/* Deux satellites plus petits, poses dans les coins (hors du produit
+   central). Positions en % : elles suivent la taille du conteneur a
+   toutes les largeurs. */
+.float-img--a { width: clamp(52px, 19%, 96px); aspect-ratio: 1; top: -2%; left: 1%; animation-delay: -2.5s; animation-duration: 11s; }
+.float-img--b { width: clamp(50px, 18%, 90px); aspect-ratio: 1; bottom: -3%; right: 1%; animation-delay: -5.5s; animation-duration: 13s; }
+
+@keyframes floatSpin {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  35%  { transform: translate3d(0, -14px, 0) rotate(5deg) scale(1.03); }
+  70%  { transform: translate3d(0, 6px, 0) rotate(-4deg) scale(.985); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+/* Bande « affiche » : le flyer garde sa lisibilite, en pleine largeur.
+   `container-type: inline-size` permet les unites cqw dans le HTML. */
+.poster-strip {
+  background: var(--cream); padding: clamp(20px, 4vw, 40px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.poster-strip-wrap {
+  position: relative; container-type: inline-size;
+}
+.poster-strip img {
+  display: block; width: 100%; height: auto; margin: 0 auto;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  box-shadow: var(--shadow); background: #fff;
+}
+.poster-strip figcaption {
+  text-align: center; color: var(--muted); font-size: .9rem; margin-top: 14px;
+}
+
+/* ---------- Stats flottantes sur l'affiche ----------
+   Remplace la longue phrase du hero par des chiffres projets.
+   Cachees si le navigateur ne geres pas les container queries ni
+   les unites cqw (sinon elles se superposeraient mal). */
+.poster-stats {
+  display: none;
+  position: absolute; z-index: 2; inset: 0;
+  pointer-events: none;
+}
+.poster-stat {
+  position: absolute; display: flex; flex-direction: column; align-items: center;
+  gap: 2px; padding: 1.6cqw 2.4cqw; border-radius: 2cqw;
+  background: rgba(255, 255, 255, .95); border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(16, 45, 30, .16);
+  animation: floatY 7s ease-in-out infinite; will-change: transform;
+}
+.poster-stat strong { font-size: 2.6cqw; line-height: 1.1; color: var(--green-700); }
+.poster-stat span { font-size: 1.35cqw; color: var(--muted); white-space: nowrap; }
+.poster-stat--1 { top: 4%; left: 3%; }
+.poster-stat--2 { top: 6%; right: 3%; animation-delay: -2.2s; animation-duration: 8.5s; }
+.poster-stat--3 { bottom: 12%; left: 4%; animation-delay: -4.4s; animation-duration: 9.5s; }
+@supports (width: 1cqw) and (container-type: inline-size) {
+  @media (min-width: 560px) { .poster-stats { display: block; } }
+}
+@keyframes floatY {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+
+@media (max-width: 899px) {
+  .hero-media { min-height: 300px; margin-top: 8px; }
+}
+@media (max-width: 480px) {
+  .hero .lead { font-size: .98rem; }
+  .hero-actions .btn { width: 100%; }
+  /* Le hero mobile debordait sous le header sticky (badge rogne) :
+     on remet de la respiration en haut. */
+  .hero-inner { padding-top: 34px; gap: 20px; }
+  /* Zone visuelle dediee : le produit ne peut plus passer sous les boutons. */
+  .hero-media { min-height: 260px; margin-top: 6px; padding: 0 44px; }
+  .float-img--main { width: 62%; }
+  .float-img--a { width: 22%; left: 0; top: 0; }
+  .float-img--b { width: 20%; right: 0; bottom: 4%; }
+  .poster-strip img { border-radius: var(--radius-sm); }
+}
+/* Respect des preferences systeme : ni flottement ni rotation. */
+@media (prefers-reduced-motion: reduce) {
+  .float-img { animation: none !important; }
+}
+
 .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2.4rem; }
 .hero-stats div strong { display: block; font-size: 1.5rem; color: var(--gold-soft); }
 .hero-stats div span { font-size: .85rem; color: #cfe0d5; }
@@ -202,10 +323,96 @@ select.mini {
 .breadcrumb { font-size: .88rem; color: var(--muted); padding: 18px 0; }
 .breadcrumb a { color: var(--green-700); }
 .product-detail { display: grid; gap: 32px; padding-bottom: 60px; }
-.gallery-main {
-  border-radius: var(--radius); overflow: hidden; background: #fff;
+
+/* --- Visuel du produit : flotte et tourne ---
+   Mise en scene sobre : fond vert profond arrondi, photo produit entiere
+   (object-fit: contain, rien n'est rogne), un anneau pointille qui tourne
+   lentement et deux points lumineux en orbite. Le tout flotte doucement.
+   Aucun debordement : le conteneur est en overflow:hidden. */
+.gallery {
+  --tile: min(100%, 460px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: var(--tile);
+  margin: 0 auto;
+  padding: 9% 9% 13%;   /* marge basse : place pour la legende */
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 38%, #2e8b52 0%, #1d6b3f 46%, #0f3d24 100%);
+  box-shadow: 0 24px 50px -18px rgba(15, 61, 36, .55);
+  overflow: hidden;
+  isolation: isolate;
 }
-.gallery-main img { display: block; width: 100%; height: auto; object-fit: contain; }
+/* Grain "studio" discret qui empeche l'aplat vert de paraitre plat. */
+.gallery > .gallery-glow {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 30%, rgba(255,255,255,.22), transparent 55%);
+}
+/* Anneau pointille en rotation continue. */
+.gallery::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(226, 178, 92, .32);
+  animation: spinCircle 34s linear infinite;
+  z-index: 0;
+}
+/* Deux points lumineux: ils orbitent avec l'anneau (meme rotation, plus vite). */
+.gallery::after {
+  content: "";
+  position: absolute;
+  width: 88%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle 5px at 50% 0%, var(--gold-soft), transparent 6px),
+    radial-gradient(circle 4px at 50% 100%, #ffffff, transparent 5px);
+  animation: spinCircle 18s linear infinite reverse;
+  z-index: 0;
+}
+.gallery-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 22px 40px -14px rgba(3, 22, 12, .55);
+  animation: floatSpinSoft 9s ease-in-out infinite;
+  will-change: transform;
+}
+.gallery-main img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;      /* la photo entiere, jamais rognee */
+  background: #fff;
+}
+/* Legende discrete sous le visuel. */
+.gallery-caption {
+  position: absolute; z-index: 1; left: 0; right: 0; bottom: 4.5%;
+  margin: 0; text-align: center; font-size: .7rem; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255, 255, 255, .68);
+}
+
+@keyframes spinCircle {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes floatSpinSoft {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
+  50%      { transform: translate3d(0, -10px, 0) rotate(1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery::before, .gallery::after, .gallery-main { animation: none !important; }
+}
 .gallery-thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
 .gallery-thumbs button {
   width: 74px; height: 74px; border-radius: 10px; overflow: hidden; padding: 0; cursor: pointer;
@@ -237,16 +444,24 @@ select.mini {
 }
 .pd-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (min-width: 900px) {
-  .product-detail { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .product-detail { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+}
+@media (max-width: 560px) {
+  .gallery { --tile: 100%; padding: 8% 8% 11%; border-radius: 20px; }
+  .gallery-caption { font-size: .64rem; letter-spacing: .16em; bottom: 4%; }
 }
 
 /* ---------- Contact ---------- */
-.contact-grid { display: grid; gap: 28px; }
+/* minmax(0,1fr) : sans ca, un <input>/<select> en width:100% impose sa largeur
+   intrinseque a la colonne, et la section depasse l'ecran sur mobile. */
+.contact-grid { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
 .contact-card {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 26px; display: grid; gap: 18px; box-shadow: var(--shadow-sm); align-content: start;
+  min-width: 0;
 }
-.contact-item { display: flex; gap: 14px; align-items: flex-start; }
+.contact-item { display: flex; gap: 14px; align-items: flex-start; min-width: 0; }
+.contact-item > div { min-width: 0; }
 .contact-item .ico {
   width: 44px; height: 44px; flex: 0 0 44px; border-radius: 12px; background: #eef3ef;
   display: grid; place-items: center; color: var(--green-700);
@@ -255,12 +470,12 @@ select.mini {
 .contact-item strong { display: block; font-size: .95rem; }
 .contact-item a, .contact-item span { color: var(--muted); font-size: .93rem; word-break: break-word; }
 .contact-item a:hover { color: var(--green-700); }
-.form-grid { display: grid; gap: 14px; }
+.form-grid { display: grid; gap: 14px; min-width: 0; }
 .form-row { display: grid; gap: 14px; }
-label.field { display: grid; gap: 6px; font-size: .9rem; font-weight: 600; }
-input[type="text"], input[type="email"], input[type="tel"], textarea {
+label.field { display: grid; gap: 6px; font-size: .9rem; font-weight: 600; min-width: 0; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
   padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit;
-  background: #fff; color: var(--ink); width: 100%; min-height: 48px;
+  background: #fff; color: var(--ink); width: 100%; min-width: 0; max-width: 100%; min-height: 48px;
 }
 textarea { min-height: 130px; resize: vertical; }
 input:focus, textarea:focus { border-color: var(--green-500); }

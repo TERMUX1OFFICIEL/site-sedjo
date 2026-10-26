@@ -126,6 +126,14 @@ export function renderHeader() {
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
     });
+    // Le menu mobile restait ouvert apres un clic sur un lien de la meme page
+    // (ancre #contact) ou apres un retour : il masquait le contenu.
+    mobile.addEventListener("click", (event) => {
+      if (!event.target.closest("a")) return;
+      mobile.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Ouvrir le menu");
+    });
   }
 }
 

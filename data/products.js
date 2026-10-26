@@ -29,7 +29,7 @@ export const products = [
     image: "assets/products/noix-cajou-fraiches.jpg",
     summary: "Noix de cajou entières et fraîches, 100 % naturelles et sans conservateur.",
     description:
-      "Noix de cajou entières, récoltées et conservées dans leur coque pour préserver leur fraîcheur et leur croquant Naturel. 100 % naturelles et sans conservateur, elles sont riches en nutriments essentiels et apportent une énergie naturelle. À consommer en apéritif, en salade ou en snacking, telles quelles ou légèrement grillées.",
+      "Noix de cajou entières, récoltées et conservées dans leur coque pour préserver leur fraîcheur et leur croquant naturel. 100 % naturelles et sans conservateur, elles sont riches en nutriments essentiels et apportent une énergie naturelle.",
     highlights: [
       "Noix de cajou entières et fraîches",
       "100 % naturelle, sans conservateur",
@@ -42,17 +42,17 @@ export const products = [
   },
   {
     id: "amandes-cajou",
-    name: "Amandes de noix de cajou",
+    name: "Noix de cajou grillées nature",
     category: "alimentation",
     image: "assets/products/amandes-cajou.jpg",
     summary:
       "Amandes enti\u00e8res de noix de cajou, grill\u00e9es nature et tri\u00e9es pour un croquant nature.",
     description:
-      "Des amandes de noix de cajou enti\u00e8res, tri\u00e9es une \u00e0 une puis grill\u00e9es \u00e0 feu doux afin de d\u00e9velopper leur parfum sans les alt\u00e9rer. Naturelles par excellence, elles se consomment telles quelles en ap\u00e9ritif, dans une salade ou en accompagnement. Un produit simple, gourmand et riche en \u00e9nergie.",
+      "Des amandes de noix de cajou enti\u00e8res, tri\u00e9es une \u00e0 une puis grill\u00e9es \u00e0 feu doux afin de d\u00e9velopper leur parfum sans les alt\u00e9rer. Naturelles par excellence, elles se consomment telles quelles et peuvent \u00eatre consomm\u00e9es avec de la banane brais\u00e9e ou de l'atti\u00e9k\u00e9.",
     highlights: [
       "Amandes enti\u00e8res tri\u00e9es",
       "Grill\u00e9es nature, sans sel ajout\u00e9",
-      "Source d'\u00e9nergie,riche en vitamine E et min\u00e9raux",
+      "Source d'\u00e9nergie, riche en vitamine E et min\u00e9raux",
       "100 % naturelle",
     ],
     formats: ["Sachet 250 g"],
@@ -83,7 +83,7 @@ export const products = [
     image: "assets/products/amandes-cacao.jpg",
     summary: "Amandes de cajou enrob\u00e9es au cacao, 100 % naturelles et sans additif.",
     description:
-      "Des amandes de cajou enti\u00e8res, enrob\u00e9es d'une couche de cacao fonc\u00e9 puis s\u00e9ch\u00e9es, pour un croquant\u00e0 l'ext\u00e9rieur et une fondant\u00e9e en bouche. 100 % naturelles, sans conservateur ni additif, elles se consomment telles quelles en ap\u00e9ritif ou en gourmandise, et \u00e9gallent aussi bien au caf\u00e9 qu'au th\u00e9. Le go\u00fbt naturel du bien-\u00eatre, dans un format pratique \u00e0 emporter.",
+      "Des amandes de cajou enti\u00e8res, enrob\u00e9es d'une couche de cacao fonc\u00e9 puis s\u00e9ch\u00e9es, pour un croquant \u00e0 l'ext\u00e9rieur et une fondant\u00e9e en bouche. 100 % naturelles, sans conservateur ni additif, elles se consomment telles quelles en ap\u00e9ritif ou en gourmandise, et s'accordent aussi bien au caf\u00e9 qu'au th\u00e9. Le go\u00fbt naturel du bien-\u00eatre, dans un format pratique \u00e0 emporter.",
     highlights: [
       "Amandes de cajou enti\u00e8res enrob\u00e9es au cacao",
       "100 % naturel",
@@ -134,7 +134,7 @@ export const products = [
     summary:
       "Liqueur artisanale de pomme de cajou fortifi\u00e9e au cola, au go\u00fbt doux et \u00e9quilibr\u00e9.",
     description:
-      "Une liqueur artisanale unique, \u00e9labor\u00e9e \u00e0 partir de pomme de cajou et fortifi\u00e9e au cola. Son go\u00fbt, doux et \u00e9quilibr\u00e9, associe la douceur de la pomme de cajou \u00e0 la chaleur du cola, pour un ar\u00f4me unique et reconnaissance. \u00c9labor\u00e9e en petites s\u00e9ries, sans colorant ni conservateur artificiels, elle se d\u00e9guste nature ou en digestif. Origine : C\u00f4te d'Ivoire.",
+      "Une liqueur artisanale unique, \u00e9labor\u00e9e \u00e0 partir de pomme de cajou et fortifi\u00e9e au cola. Son go\u00fbt, doux et \u00e9quilibr\u00e9, associe la douceur de la pomme de cajou \u00e0 la chaleur du cola, pour un ar\u00f4me unique et reconnaissable. \u00c9labor\u00e9e en petites s\u00e9ries, sans colorant ni conservateur artificiels, elle se d\u00e9guste nature ou en digestif. Origine : C\u00f4te d'Ivoire.",
     highlights: [
       "Riche en antioxydants naturels",
       "Favorise la digestion",
@@ -155,7 +155,7 @@ export const products = [
     summary:
       "Liqueur de cajou fortifi\u00e9e au cacao, qui associe les saveurs de la pomme d'anacarde et du cacao.",
     description:
-      "Une liqueur de cajou \u00e9labor\u00e9e \u00e0 partir de noix de cajou et de cacao, dont la recette associe l'acidit\u00e9 fruit\u00e9e de la pomme d'anacarde \u00e0 la richesse du cacao. Fortifi\u00e9e et embouteill\u00e9e \u00e0 la demande, elle se sert fra\u00eeche ou en digestif, pour une d\u00e9gustation ml\u00f9re et g\u00e9n\u00e9reuse. Fabrication artisanale en petites s\u00e9ries.",
+      "Une liqueur \u00e9labor\u00e9e \u00e0 partir de pomme d'anacarde et de cacao, dont la recette associe l'acidit\u00e9 fruit\u00e9e de la pomme d'anacarde \u00e0 la richesse du cacao. Fortifi\u00e9e et embouteill\u00e9e \u00e0 la demande, elle se sert fra\u00eeche ou en digestif, pour une d\u00e9gustation moelleuse et g\u00e9n\u00e9reuse. Fabrication artisanale en petites s\u00e9ries.",
     highlights: [
       "Pomme d'anacarde et cacao dans un m\u00eame \u00e9lange",
       "Facilite la digestion",
@@ -232,7 +232,7 @@ export const products = [
       "Une solution hydroalcoolique con\u00e7ue pour l'hygi\u00e8ne des mains et pour diff\u00e9rents usages pr\u00e9ventifs du quotidien. Format pratique, elle se glisse facilement dans un sac ou sur un bureau. Utilisable d\u00e8s que besoin, elle s\u00e8che rapidement et ne laisse aucun r\u00e9sidu gras.",
     highlights: [
       "Hygi\u00e8ne et d\u00e9sinfection des mains",
-      "Aide \u00e0 pr\u00e9venir les pied d'athl\u00e8te",
+      "Aide \u00e0 pr\u00e9venir le pied d'athl\u00e8te",
       "Peut \u00eatre utilis\u00e9e contre les furoncles",
       "Peut \u00eatre utilis\u00e9e contre la teigne",
       "Peut \u00eatre utilis\u00e9e contre la gale",
