@@ -65,6 +65,46 @@ function posterStrip() {
   `;
 }
 
+function entrepreneurProfile() {
+  return `
+    <section class="section profile-section" id="parcours" aria-labelledby="parcours-title">
+      <div class="wrap profile-layout">
+        <div class="profile-intro">
+          <span class="eyebrow">Parcours et activités</span>
+          <h2 id="parcours-title">Anon Bitty <span>Odjo Natacha</span></h2>
+          <p>Entrepreneure basée en Côte d’Ivoire, active dans les secteurs de la couture, du commerce et de l’agroalimentaire.</p>
+          <div class="profile-tags" aria-label="Secteurs d’activité">
+            <span>Couture</span>
+            <span>Commerce</span>
+            <span>Agroalimentaire</span>
+          </div>
+          <span class="profile-signature" aria-hidden="true">Entreprendre avec audace</span>
+        </div>
+
+        <div class="profile-timeline" aria-label="Étapes de son parcours">
+          <article class="profile-step">
+            <span class="profile-step-number" aria-hidden="true">01</span>
+            <div>
+              <span class="profile-step-label">Domaine d’expertise</span>
+              <h3>Un savoir-faire pluriel</h3>
+              <p>Son parcours professionnel réunit des expériences dans la couture, la vente et la commercialisation de produits agroalimentaires.</p>
+            </div>
+          </article>
+          <article class="profile-step profile-step--launch">
+            <span class="profile-step-number" aria-hidden="true">02</span>
+            <div>
+              <span class="profile-step-label">Lancement d’activité</span>
+              <h3>La création de son entreprise</h3>
+              <p>Animée par une volonté d’indépendance économique, elle a créé sa propre entreprise.</p>
+            </div>
+            <span class="profile-year">2024</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  `;
+} 
+
 function perks() {
   return `
     <section class="section section-alt" id="avantages">
@@ -203,7 +243,7 @@ function renderHome() {
   const main = document.getElementById("main");
   // 404.html fournit son propre contenu : on ne l'ecrase pas.
   if (!main || main.children.length > 0) return;
-  main.innerHTML = hero() + posterStrip() + perks() + featured() + categoriesSection() + contact();
+  main.innerHTML = hero() + posterStrip() + entrepreneurProfile() + perks() + featured() + categoriesSection() + contact();
 
   const form = document.getElementById("orderForm");
   const status = document.getElementById("orderStatus");
